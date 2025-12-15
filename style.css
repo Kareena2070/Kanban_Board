@@ -17,6 +17,9 @@ html, body{
     /* bg button */
     --bg-button-color: #1a1a1a;
 
+    /* add task bg button */
+    --bg-add-task-button-color: linear-gradient(45deg, #ff5757, #ff5757);
+
     /* bg task color */
     --bg-task-color: #262626;
 
@@ -38,16 +41,18 @@ html, body{
     --border-raudius-m: 10px;
     --border-radius-l: 15px;
     --border-raudius-xl: 20px;
+    --border-raudius-xxl: 30px;
 
     /* border color */
     --border-color-primary: #333333;
-    --border-golder: #fce45da4;
+    --border-golder: #ffbd59;
 
     /* font-size variable */
     --font-size-s: 1rem;
     --font-size-m: 1.5rem;
     --font-size-l: 2rem;
     --font-size-xl: 2.5rem;
+     --font-size-xxl: 3.5rem;
 }
 
 main{
@@ -69,10 +74,16 @@ nav{
     justify-content: space-between;
     align-items: center;
     font-size: var(--font-size-xl);
+    font-weight: 900;
+}
+nav .left{
+    font-weight: 900;
+    font-size: var(--font-size-xxl);
 }
 
 nav button{
-    background-color: var(--bg-button-color);
+    /* Gradient variables are images — use 'background' (or background-image) not background-color */
+    background: var(--bg-add-task-button-color);
     border: none;
     outline: none;
     color: var(--text-primary-color);
@@ -96,8 +107,8 @@ section .task-column{
     flex-direction: column;
     gap: var(--padding-m);
     background-color: var(--bg-button-color);
-    border-radius: var(--border-raudius-m);
-    border: 1px solid var(--border-golder);
+    border-radius: var(--border-raudius-xxl);
+    border: 3.5px solid var(--border-golder);
     flex-grow: 1;
     padding: var(--padding-m);
 }
@@ -113,20 +124,30 @@ section .task-column .heading{
 section .task-column .task{
     background-color: var(--bg-task-color);
     padding: var(--padding-m);
-    border-radius: var(--border-radius-l);
+    border-radius: var(--border-raudius-xxl);
     cursor: grab;
     display: flex;
     flex-direction: column;
     gap: var(--padding-s);
+    border: 1px solid var(--border-golder);
 }
 
 section .task-column .task button{
     align-self: flex-end;
-    background-color: var(--delete-button-color);
+    background-color: var(--border-golder);
     color: var(--text-primary-color);
     cursor: pointer;
     padding: var(--padding-s) var(--padding-m);
-    border-radius: var(--border-radius-s);
+    border-radius: var(--border-radius-l);
     border: none;
     outline: none;
+    font-weight: 900;
+}
+
+
+section .task-column.drag-over,
+section .task-column .drag-over {
+    border: 3px dashed var(--text-primary-color);
+    transform: scale(1.02);
+    transition: transform 120ms ease-in-out;
 }
