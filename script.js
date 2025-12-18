@@ -45,3 +45,40 @@ function addDragOverListeners(column) {
 addDragOverListeners(todo);
 addDragOverListeners(inProgress);
 addDragOverListeners(done);
+
+// Add New Task Modal Functionality
+const toggleModalBtn = document.getElementById("toggel-modal");
+const model = document.querySelector(".modal");
+const bg = document.querySelector(".bg");
+
+toggleModalBtn.addEventListener("click", () => {
+    model.classList.toggle("active");
+});
+
+bg.addEventListener("click", () => {
+    model.classList.remove("active");
+});
+
+
+const addNewTaskBtn = document.querySelector("#add-new-task");
+
+addNewTaskBtn.addEventListener("click", () => {
+
+    const taskTitle = document.querySelector(".add-new-task input").value;
+    const taskDescription = document.querySelector(".add-new-task textarea").value;
+
+    const div = document.createElement("div");
+    div.classList.add("task");
+    div.setAttribute("draggable", "true");
+    div.innerHTML = `
+    <h2>${taskTitle}</h2>
+    <p>${taskDescription}</p>
+     <button>Delete</button>`;
+    todo.appendChild(div);
+
+    model.classList.remove("active");
+
+    div.addEventListener("drag", (e) => {
+        draggedTask = div;
+    });
+})
