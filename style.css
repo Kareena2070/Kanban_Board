@@ -151,3 +151,60 @@ section .task-column .drag-over {
     transform: scale(1.02);
     transition: transform 120ms ease-in-out;
 }
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.modal.active{
+    display: flex;
+}
+
+
+.modal .bg{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+.modal .add-new-task{
+    background-color: var(--bg-primary-color);
+    padding: var(--padding-l);
+    border-radius: var(--border-raudius-xxl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-m);
+    border: 1px solid var(--border-golder);
+    z-index: 10;
+}
+.modal .add-new-task input,
+.modal .add-new-task textarea{
+    padding: var(--padding-m);
+    border-radius: var(--border-raudius-m);
+    border: none;
+    outline: none;
+    font-size: var(--font-size-m);
+    background-color: var(--bg-button-color);
+    color: var(--text-primary-color);
+    /* border: 1px solid var(--border-golder); */
+}
+.modal .add-new-task button{
+    background: var(--bg-add-task-button-color);
+    border: none;
+    outline: none;
+    color: var(--text-primary-color);
+    padding: var(--padding-s) var(--padding-s);
+    cursor: pointer;
+    border-radius: var(--border-raudius-m);
+    font-size: var(--font-size-m);
+    width: fit-content;
+    align-self: center;
+}
