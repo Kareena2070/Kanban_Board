@@ -26,6 +26,27 @@ if (localStorage.getItem("tasks")) {
             `;
             column.appendChild(div);
 
+            const deleteBtn = div.querySelector("button");
+            deleteBtn.addEventListener("click", () => {
+                div.remove();
+                
+                 columns.forEach(col => {
+                    const tasks = col.querySelectorAll(".task")
+                    const count = col.querySelector(".right")
+
+                    taskData[col.id] = Array.from(tasks).map(t => {
+                        return{
+                            title: t.querySelector("h2").innerText,
+                            description: t.querySelector("p").innerText
+                        }
+                    });
+
+                    localStorage.setItem("tasks", JSON.stringify(taskData));
+
+                    count.innerHTML = tasks.length;
+                });
+            });
+
             div.addEventListener("drag", (e) => {
                 draggedTask = div;
             });
@@ -134,6 +155,28 @@ addNewTaskBtn.addEventListener("click", () => {
     <p>${taskDescription}</p>
      <button>Delete</button>`;
     todo.appendChild(div);
+
+        const deleteBtn = div.querySelector("button");
+            deleteBtn.addEventListener("click", () => {
+                div.remove();
+                
+                columns.forEach(col => {
+                    const tasks = col.querySelectorAll(".task")
+                    const count = col.querySelector(".right")
+
+                    taskData[col.id] = Array.from(tasks).map(t => {
+                        return{
+                            title: t.querySelector("h2").innerText,
+                            description: t.querySelector("p").innerText
+                        }
+                    });
+
+                    localStorage.setItem("tasks", JSON.stringify(taskData));
+
+                    count.innerHTML = tasks.length;
+                });
+                
+            });
 
     model.classList.remove("active");
 
