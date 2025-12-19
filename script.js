@@ -143,9 +143,16 @@ bg.addEventListener("click", () => {
 const addNewTaskBtn = document.querySelector("#add-new-task");
 
 addNewTaskBtn.addEventListener("click", () => {
+    const titleInput = document.querySelector(".add-new-task input");
+    const descInput = document.querySelector(".add-new-task textarea");
 
-    const taskTitle = document.querySelector(".add-new-task input").value;
-    const taskDescription = document.querySelector(".add-new-task textarea").value;
+    const taskTitle = titleInput.value.trim();
+    const taskDescription = descInput.value.trim();
+
+    // ❌ Stop if title or description is empty
+    if (taskTitle === "" || taskDescription === "") {
+        return;
+    }
 
     const div = document.createElement("div");
     div.classList.add("task");
@@ -155,6 +162,10 @@ addNewTaskBtn.addEventListener("click", () => {
     <p>${taskDescription}</p>
      <button>Delete</button>`;
     todo.appendChild(div);
+
+    // ✅ Clear inputs after successful add
+    titleInput.value = "";
+    descInput.value = "";
 
         const deleteBtn = div.querySelector("button");
             deleteBtn.addEventListener("click", () => {
